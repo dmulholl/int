@@ -162,6 +162,17 @@ class IntegerConversionTests(unittest.TestCase):
             prep('''error: "oo" cannot be parsed as a binary integer''')
         )
 
+    def test_big_int(self):
+        self.assertEqual(
+            parse('36893488147419103233'), # 2**65 + 1
+            prep('''
+                hex: 20000000000000001
+                dec: 36,893,488,147,419,103,233
+                oct: 4000000000000000000001
+                bin: 00000010 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001
+            ''')
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
