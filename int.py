@@ -21,7 +21,7 @@ License: This work has been placed in the public domain.
 
 """
 
-__version__ = '0.4.0'
+__version__ = '0.4.1'
 
 
 import os, sys
@@ -34,7 +34,7 @@ Prints an integer in its [b]inary, [o]ctal, [d]ecimal, and he[x] bases.
 Use a single letter prefix to declare the base of the input, e.g. b1010. 
 The base defaults to [d]ecimal if the prefix is omitted. 
 
-Accepts multiple arguments.""" % os.path.basename(__file__)
+Accepts multiple arguments.""" % os.path.basename(sys.argv[0])
 
 
 template = """\
