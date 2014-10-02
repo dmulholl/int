@@ -21,7 +21,7 @@ License: This work has been placed in the public domain.
 
 """
 
-__version__ = '0.4.2'
+__version__ = '0.4.3'
 
 
 import os, sys
@@ -57,7 +57,7 @@ def println(s=''):
     sys.stdout.write(s + '\n')
 
 
-def int_to_octet(i):
+def int_to_octets(i):
     s = '' if i else '00000000'
     while i:
         for digit in range(8):
@@ -85,7 +85,7 @@ def parse_arg(s):
     if int_val < 0:
         return 'error: negative integers are not supported'
     else:
-        return template.format(int_val, int_to_octet(int_val))
+        return template.format(int_val, int_to_octets(int_val))
 
 
 def main():
