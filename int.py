@@ -21,7 +21,7 @@ License: This work has been placed in the public domain.
 
 """
 
-__version__ = '0.4.1'
+__version__ = '0.4.2'
 
 
 import os, sys
@@ -82,7 +82,10 @@ def parse_arg(s):
         int_val = int(int_str, base)
     except ValueError:
         return 'error: "%s" cannot be parsed as %s integer' % (int_str, adj)
-    return template.format(int_val, int_to_octet(int_val))
+    if int_val < 0:
+        return 'error: negative integers are not supported'
+    else:
+        return template.format(int_val, int_to_octet(int_val))
 
 
 def main():
