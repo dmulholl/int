@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
 Command line utility for converting integers between bases.
 
 Accepts an integer in [b]inary, [o]ctal, [d]ecimal, or he[x] base. 
-Prints it in all four bases. A single letter prefix declares the base 
-of the input. (Defaults to decimal if no prefix is present.)
+Prints it out in all four bases. A single letter prefix specifies the 
+base of the input. (Defaults to [d]ecimal if omitted.)
 
 Accepts multiple arguments.
 
@@ -21,7 +21,7 @@ License: This work has been placed in the public domain.
 
 """
 
-__version__ = '0.2.0'
+__version__ = '0.4.0'
 
 
 import os, sys
@@ -32,16 +32,16 @@ help_text = """usage: %s INT [INT ...]
 Prints an integer in its [b]inary, [o]ctal, [d]ecimal, and he[x] bases.
 
 Use a single letter prefix to declare the base of the input, e.g. b1010. 
-The base defaults to decimal if no prefix is supplied. Multiple arguments 
-are accepted.""" % os.path.basename(__file__)
+The base defaults to [d]ecimal if the prefix is omitted. 
+
+Accepts multiple arguments.""" % os.path.basename(__file__)
 
 
-template = """
+template = """\
 hex: {0:X}
 dec: {0:,d}
 oct: {0:o}
-bin: \
-"""
+bin: {1}"""
 
 
 bases = {
@@ -53,8 +53,12 @@ bases = {
 }
 
 
-def binary_string(i):
-    s = ''
+def println(s=''):
+    sys.stdout.write(s + '\n')
+
+
+def int_to_octet(i):
+    s = '' if i else '00000000'
     while i:
         for digit in range(8):
             if i & 1 == 1:
@@ -66,31 +70,28 @@ def binary_string(i):
     return s.lstrip()
 
 
-def print_ints(args):
-    for argstr in args:
-        prefix = argstr[0].lower()
-        if prefix in bases:
-            inp_str = argstr[1:]
-            base, adj = bases[prefix]
-        else:
-            inp_str = argstr
-            base, adj = bases['d']
-        try:
-            inp_int = int(inp_str, base)
-        except ValueError:
-            sys.exit(
-                '\nerror: "%s" cannot be parsed as %s integer' % (inp_str, adj)
-            )
-        print(template.format(inp_int) + binary_string(inp_int))
+def parse_arg(s):
+    prefix = s[0].lower()
+    if prefix in bases:
+        int_str = s[1:]
+        base, adj = bases[prefix]
+    else:
+        int_str = s
+        base, adj = bases['d']
+    try:
+        int_val = int(int_str, base)
+    except ValueError:
+        return 'error: "%s" cannot be parsed as %s integer' % (int_str, adj)
+    return template.format(int_val, int_to_octet(int_val))
 
 
 def main():
     if len(sys.argv) == 1:
-        print(help_text)
+        println(help_text)
     elif '-h' in sys.argv or '--help' in sys.argv:
-        print(help_text)
+        println(help_text)
     else:
-        print_ints(sys.argv[1:])
+        println('\n\n'.join(parse_arg(arg) for arg in sys.argv[1:]))
 
 
 if __name__ == '__main__':
