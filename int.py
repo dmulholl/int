@@ -89,9 +89,7 @@ def parse_arg(s):
 
 
 def main():
-    if len(sys.argv) == 1:
-        println(help_text)
-    elif '-h' in sys.argv or '--help' in sys.argv:
+    if len(sys.argv) == 1 or '-h' in sys.argv or '--help' in sys.argv:
         println(help_text)
     else:
         println('\n\n'.join(parse_arg(arg) for arg in sys.argv[1:]))
