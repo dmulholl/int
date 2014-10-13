@@ -2,8 +2,8 @@
 """
 Command line utility for converting integers between bases.
 
-Accepts an integer in [b]inary, [o]ctal, [d]ecimal, or he[x] base. 
-Prints it out in all four bases. A single letter prefix specifies the 
+Accepts an integer in [b]inary, [o]ctal, [d]ecimal, or he[x] base.
+Prints it out in all four bases. A single letter prefix specifies the
 base of the input. (Defaults to [d]ecimal if omitted.)
 
 Accepts multiple arguments.
@@ -11,7 +11,7 @@ Accepts multiple arguments.
 Example:
 
     $ int x10
-    
+
     hex: 10
     dec: 16
     oct: 20
@@ -21,7 +21,7 @@ License: This work has been placed in the public domain.
 
 """
 
-__version__ = '0.4.3'
+__version__ = '1.0.0'
 
 
 import os, sys
@@ -31,8 +31,8 @@ help_text = """usage: %s INT [INT ...]
 
 Prints an integer in its [b]inary, [o]ctal, [d]ecimal, and he[x] bases.
 
-Use a single letter prefix to declare the base of the input, e.g. b1010. 
-The base defaults to [d]ecimal if the prefix is omitted. 
+Use a single letter prefix to declare the base of the input, e.g. b1010.
+The base defaults to [d]ecimal if the prefix is omitted.
 
 Accepts multiple arguments.""" % os.path.basename(sys.argv[0])
 

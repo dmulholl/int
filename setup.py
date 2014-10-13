@@ -15,12 +15,12 @@ then prints it out in all four bases::
     oct: 100
     bin: 01000000
 
-You can specify the base of the input using a single letter prefix. 
+You can specify the base of the input using a single letter prefix.
 (Defaults to [d]ecimal if omitted.) `int` also accepts multiple arguments::
 
     $ int b1001 o777 d256 x1EA
 
-See the module's Github homepage (https://github.com/dmulholland/int) 
+See the module's Github homepage (https://github.com/dmulholland/int)
 for further details.
 
 """
@@ -55,8 +55,7 @@ setup(
     ),
     long_description = __doc__,
     classifiers = [
-        #'Development Status :: 5 - Production/Stable',
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
