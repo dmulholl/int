@@ -21,7 +21,7 @@ License: This work has been placed in the public domain.
 
 """
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 import os, sys
@@ -91,6 +91,8 @@ def parse_arg(s):
 def main():
     if len(sys.argv) == 1 or '-h' in sys.argv or '--help' in sys.argv:
         println(help_text)
+    elif '-V' in sys.argv or '--version' in sys.argv:
+        println(__version__)
     else:
         println('\n\n'.join(parse_arg(arg) for arg in sys.argv[1:]))
 
