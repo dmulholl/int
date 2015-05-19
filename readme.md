@@ -13,7 +13,7 @@ A handy command line utility for converting integers between bases.
     oct: 100
     bin: 01000000
 
-You can specify the base of the input using a single letter prefix. (Defaults to [d]ecimal if omitted.) `int` also accepts multiple arguments:
+You can specify the base of the input using a single letter prefix. (Defaults to decimal if omitted.) `int` also accepts multiple arguments:
 
     $ int b1001 o777 d256 x1EA
 
