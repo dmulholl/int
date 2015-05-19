@@ -79,6 +79,7 @@ def int_to_octets(i):
 def parse_arg(s):
     s = s.lstrip('0') or '0'
     prefix = s[0].lower()
+
     if prefix in bases:
         digits = s[1:]
         base, adj = bases[prefix]
