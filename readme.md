@@ -2,7 +2,7 @@
 Integer Conversion Utility
 ==========================
 
-A tiny command line utility for converting integers between bases.
+A handy command line utility for converting integers between bases.
 
 `int` accepts an integer in its [b]inary, [o]ctal, [d]ecimal, or he[x] form, then prints it out in all four bases:
 
@@ -17,6 +17,8 @@ You can specify the base of the input using a single letter prefix. (Defaults to
 
     $ int b1001 o777 d256 x1EA
 
+Leading zeros are ignored so integer literals in the form `0x123` are also acceptable.
+
 
 Installation
 ------------
@@ -24,10 +26,6 @@ Installation
 Install directly from the Python Package Index using `pip`:
 
     $ pip install int
-
-
-Requirements
-------------
 
 Requires Python 2.7 or 3+.
 

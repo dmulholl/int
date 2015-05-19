@@ -29,6 +29,17 @@ class IntegerConversionTests(unittest.TestCase):
             ''')
         )
 
+    def test_00(self):
+        self.assertEqual(
+            parse('00'),
+            prep('''
+                hex: 0
+                dec: 0
+                oct: 0
+                bin: 00000000
+            ''')
+        )
+
     def test_1(self):
         self.assertEqual(
             parse('1'),
@@ -117,9 +128,31 @@ class IntegerConversionTests(unittest.TestCase):
             ''')
         )
 
+    def test_zeroed_hex_1024(self):
+        self.assertEqual(
+            parse('0x400'),
+            prep('''
+                hex: 400
+                dec: 1,024
+                oct: 2000
+                bin: 00000100 00000000
+            ''')
+        )
+
     def test_decimal_1024(self):
         self.assertEqual(
             parse('d1024'),
+            prep('''
+                hex: 400
+                dec: 1,024
+                oct: 2000
+                bin: 00000100 00000000
+            ''')
+        )
+
+    def test_zeroed_decimal_1024(self):
+        self.assertEqual(
+            parse('0d1024'),
             prep('''
                 hex: 400
                 dec: 1,024
@@ -139,9 +172,31 @@ class IntegerConversionTests(unittest.TestCase):
             ''')
         )
 
+    def test_zeroed_octal_1024(self):
+        self.assertEqual(
+            parse('0o2000'),
+            prep('''
+                hex: 400
+                dec: 1,024
+                oct: 2000
+                bin: 00000100 00000000
+            ''')
+        )
+
     def test_binary_1024(self):
         self.assertEqual(
             parse('b10000000000'),
+            prep('''
+                hex: 400
+                dec: 1,024
+                oct: 2000
+                bin: 00000100 00000000
+            ''')
+        )
+
+    def test_zeroed_binary_1024(self):
+        self.assertEqual(
+            parse('0b10000000000'),
             prep('''
                 hex: 400
                 dec: 1,024

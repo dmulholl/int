@@ -2,26 +2,30 @@
 """
 Command line utility for converting integers between bases.
 
-Accepts an integer in [b]inary, [o]ctal, [d]ecimal, or he[x] base.
-Prints it out in all four bases. A single letter prefix specifies the
-base of the input. (Defaults to [d]ecimal if omitted.)
+Prints an integer in its [b]inary, [o]ctal, [d]ecimal, and he[x] bases.
+
+Use a single letter prefix to declare the base of the input, e.g. b1010.
+The base defaults to [d]ecimal if the prefix is omitted.
+
+Leading zeros are stripped so Python integer literals in their canonical
+form are accepted, e.g. 0x123.
 
 Accepts multiple arguments.
 
 Example:
 
     $ int x10
-
     hex: 10
     dec: 16
     oct: 20
     bin: 00010000
 
-License: This work has been placed in the public domain.
+Author: Darren Mulholland <dmulholland@outlook.ie>
+License: Public Domain
 
 """
 
-__version__ = '1.0.1'
+__version__ = '1.1.0'
 
 
 import os, sys
@@ -33,6 +37,8 @@ Prints an integer in its [b]inary, [o]ctal, [d]ecimal, and he[x] bases.
 
 Use a single letter prefix to declare the base of the input, e.g. b1010.
 The base defaults to [d]ecimal if the prefix is omitted.
+
+Accepts integer literals with a leading zero, e.g. 0x123.
 
 Accepts multiple arguments.""" % os.path.basename(sys.argv[0])
 
@@ -71,27 +77,30 @@ def int_to_octets(i):
 
 
 def parse_arg(s):
+    s = s.lstrip('0') or '0'
     prefix = s[0].lower()
     if prefix in bases:
-        int_str = s[1:]
+        digits = s[1:]
         base, adj = bases[prefix]
     else:
-        int_str = s
+        digits = s
         base, adj = bases['d']
+
     try:
-        int_val = int(int_str, base)
+        value = int(digits, base)
     except ValueError:
-        return 'error: "%s" cannot be parsed as %s integer' % (int_str, adj)
-    if int_val < 0:
+        return 'error: "%s" cannot be parsed as %s integer' % (digits, adj)
+
+    if value < 0:
         return 'error: negative integers are not supported'
     else:
-        return template.format(int_val, int_to_octets(int_val))
+        return template.format(value, int_to_octets(value))
 
 
 def main():
-    if len(sys.argv) == 1 or '-h' in sys.argv or '--help' in sys.argv:
+    if len(sys.argv) == 1 or '--help' in sys.argv:
         println(help_text)
-    elif '-V' in sys.argv or '--version' in sys.argv:
+    elif '--version' in sys.argv:
         println(__version__)
     else:
         println('\n\n'.join(parse_arg(arg) for arg in sys.argv[1:]))
