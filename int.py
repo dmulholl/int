@@ -25,22 +25,22 @@ License: Public Domain
 
 """
 
-__version__ = '1.1.1'
+__version__ = '1.1.2'
 
 
 import os, sys
 
 
-help_text = """usage: %s INT [INT ...]
+help_text = """Usage: %s INT [INT ...]
 
-Prints an integer in its [b]inary, [o]ctal, [d]ecimal, and he[x] bases.
+  Prints an integer in its [b]inary, [o]ctal, [d]ecimal, and he[x] bases.
 
-Use a single letter prefix to declare the base of the input, e.g. b1010.
-The base defaults to [d]ecimal if the prefix is omitted.
+  Use a single letter prefix to declare the base of the input, e.g. b1010.
+  The base defaults to [d]ecimal if the prefix is omitted.
 
-Accepts integer literals with a leading zero, e.g. 0x123.
-
-Accepts multiple arguments.""" % os.path.basename(sys.argv[0])
+  - Accepts integer literals with a leading zero, e.g. 0x123.
+  - Accepts multiple arguments.
+  - Does not accept negative integers.""" % os.path.basename(sys.argv[0])
 
 
 template = """\

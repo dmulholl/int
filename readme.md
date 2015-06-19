@@ -7,7 +7,6 @@ A handy command line utility for converting integers between bases.
 `int` accepts an integer in its [b]inary, [o]ctal, [d]ecimal, or he[x] form, then prints it out in all four bases:
 
     $ int 64
-
     hex: 40
     dec: 64
     oct: 100
