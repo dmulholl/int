@@ -208,13 +208,13 @@ class IntegerConversionTests(unittest.TestCase):
     def test_unprefixed_error(self):
         self.assertEqual(
             parse('foo'),
-            prep('''error: "foo" cannot be parsed as a decimal integer''')
+            prep('''Error: "foo" cannot be parsed as a decimal integer.''')
         )
 
     def test_prefixed_error(self):
         self.assertEqual(
             parse('boo'),
-            prep('''error: "oo" cannot be parsed as a binary integer''')
+            prep('''Error: "oo" cannot be parsed as a binary integer.''')
         )
 
     def test_big_int(self):
