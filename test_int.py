@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------
-# Unit tests for the int module.
+# Unit tests for the int module. Run with pytest.
 # --------------------------------------------------------------------------
 
 import textwrap
