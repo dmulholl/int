@@ -25,11 +25,13 @@
 # License: Public Domain
 # --------------------------------------------------------------------------
 
-import os, sys
+import os
+import sys
+import shutil
 
 
 # Application version number.
-__version__ = '1.1.3'
+__version__ = '1.2.0'
 
 
 # Command line help text.
@@ -74,6 +76,15 @@ def println(s=''):
     sys.stdout.write(s + '\n')
 
 
+# Prints a line of dashes.
+def printspacer():
+    if sys.version_info < (3, 3):
+        cols = 80
+    else:
+        cols, _ = shutil.get_terminal_size()
+    println('-' * cols)
+
+
 # Converts an integer into a string of binary octets.
 def int_to_octets(i):
     s = '' if i else '00000000'
@@ -114,10 +125,17 @@ def parse_arg(s):
 def main():
     if len(sys.argv) == 1 or '--help' in sys.argv:
         println(help_text)
-    elif '--version' in sys.argv:
+        sys.exit()
+
+    if '--version' in sys.argv:
         println(__version__)
-    else:
-        println('\n\n'.join(parse_arg(arg) for arg in sys.argv[1:]))
+        sys.exit()
+
+    printspacer()
+
+    for arg in sys.argv[1:]:
+        println(parse_arg(arg))
+        printspacer()
 
 
 if __name__ == '__main__':
