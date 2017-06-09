@@ -1,6 +1,5 @@
 
-Integer Conversion Utility
-==========================
+# Int
 
 Int is a handy command line utility for converting integers between bases.
 It accepts an integer in its [b]inary, [o]ctal, [d]ecimal, or he[x] form,
@@ -23,8 +22,7 @@ Leading zeros are ignored so integer literals in the form `0x123` are also
 acceptable.
 
 
-Installation
-------------
+## Installation
 
 Install from the Python Package Index using `pip`:
 
@@ -33,7 +31,6 @@ Install from the Python Package Index using `pip`:
 Int requires Python 3.
 
 
-License
--------
+## License
 
 This work has been placed in the public domain.
