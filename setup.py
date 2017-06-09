@@ -23,7 +23,7 @@ Leading zeros are ignored so integer literals in the form `0x123` are
 also accepted.
 
 See the module's `Github homepage <https://github.com/dmulholland/int>`_
-for further details.
+for details.
 
 """
 
@@ -58,8 +58,6 @@ setup(
     long_description = __doc__,
     classifiers = [
         'Development Status :: 5 - Production/Stable',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
         'Operating System :: OS Independent',
         'License :: Public Domain',
