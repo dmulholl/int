@@ -3,10 +3,7 @@
 Integer Conversion Utility
 ==========================
 
-A handy command line utility for converting integers between bases.
-
-`int` accepts an integer in its [b]inary, [o]ctal, [d]ecimal, or he[x] form,
-then prints it out in all four bases::
+Int is a handy command line utility for converting integers between bases. It accepts an integer in its [b]inary, [o]ctal, [d]ecimal, or he[x] form, then prints it out in all four bases::
 
     $ int 64
     hex: 40
@@ -15,7 +12,7 @@ then prints it out in all four bases::
     bin: 01000000
 
 You can specify the base of the input using a single letter prefix.
-(Defaults to decimal if omitted.) `int` also accepts multiple arguments::
+(Defaults to decimal if omitted.) Int also accepts multiple arguments::
 
     $ int b1001 o777 d256 x1EA
 
