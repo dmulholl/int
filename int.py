@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # --------------------------------------------------------------------------
 # Integer conversion utility.
 #
@@ -31,16 +31,20 @@ import shutil
 
 
 # Application version number.
-__version__ = '1.2.0'
+__version__ = '2.0.0'
 
 
 # Command line help text.
-help_text = """Usage: %s [FLAGS] INT [INT ...]
+help_text = """
+Usage: %s [FLAGS] INT [INT ...]
 
-  Prints an integer in its [b]inary, [o]ctal, [d]ecimal, and he[x] bases.
+  Integer conversion utility. Prints an integer in [b]inary, [o]ctal,
+  [d]ecimal, and he[x] bases.
 
   Use a single letter prefix to declare the base of the input, e.g. b1010.
   The base defaults to [d]ecimal if the prefix is omitted.
+
+  This utility:
 
   - Accepts integer literals with a leading zero, e.g. 0x123.
   - Accepts multiple arguments.
@@ -71,18 +75,13 @@ bases = {
 }
 
 
-# Prints to stdout, appending a newline.
-def println(s=''):
-    sys.stdout.write(s + '\n')
-
-
 # Prints a line of dashes.
 def printspacer():
     if sys.version_info < (3, 3):
         cols = 80
     else:
         cols, _ = shutil.get_terminal_size()
-    println('-' * cols)
+    print('─' * cols)
 
 
 # Converts an integer into a string of binary octets.
@@ -124,17 +123,17 @@ def parse_arg(s):
 
 def main():
     if len(sys.argv) == 1 or '--help' in sys.argv:
-        println(help_text)
+        print(help_text)
         sys.exit()
 
     if '--version' in sys.argv:
-        println(__version__)
+        print(__version__)
         sys.exit()
 
     printspacer()
 
     for arg in sys.argv[1:]:
-        println(parse_arg(arg))
+        print(parse_arg(arg))
         printspacer()
 
 
