@@ -31,7 +31,7 @@ import shutil
 
 
 # Application version number.
-__version__ = '2.0.0'
+__version__ = '2.1.0'
 
 
 # Command line help text.
@@ -86,7 +86,7 @@ def printspacer():
 
 # Converts an integer into a string of binary octets.
 def int_to_octets(i):
-    s = '' if i else '00000000'
+    s = '' if i else '0000 0000'
     while i:
         for digit in range(8):
             if i & 1 == 1:
@@ -94,8 +94,11 @@ def int_to_octets(i):
             else:
                 s = '0' + s
             i >>= 1
-        s = ' ' + s
-    return s.lstrip()
+            if digit == 3:
+                s = ' ' + s
+            elif digit == 7:
+                s = ' · ' + s
+    return s.lstrip(' ·')
 
 
 # Processes a single string argument.
@@ -126,7 +129,7 @@ def main():
         print(help_text)
         sys.exit()
 
-    if '--version' in sys.argv:
+    if '--version' in sys.argv or '-v' in sys.argv:
         print(__version__)
         sys.exit()
 
