@@ -31,7 +31,7 @@ import shutil
 
 
 # Application version number.
-__version__ = '2.1.0'
+__version__ = '2.2.0'
 
 
 # Command line help text.
@@ -81,7 +81,7 @@ def printspacer():
         cols = 80
     else:
         cols, _ = shutil.get_terminal_size()
-    print('─' * cols)
+    print('\u001B[90m' + '─' * cols + '\u001B[0m')
 
 
 # Converts an integer into a string of binary octets.
