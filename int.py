@@ -59,10 +59,10 @@ Flags:
 
 # Output template.
 template = """\
-hex: {0:X}
-dec: {0:,d}
-oct: {0:o}
-bin: {1}"""
+ hex: {0:X}
+ dec: {0:,d}
+ oct: {0:o}
+ bin: {1}"""
 
 
 # Maps single-letter prefixes to bases.
@@ -97,8 +97,10 @@ def int_to_octets(i):
             if digit == 3:
                 s = ' ' + s
             elif digit == 7:
-                s = ' · ' + s
-    return s.lstrip(' ·')
+                s = '-' + s
+    s = s.lstrip(' -')
+    s = s.replace('-', '\u001B[90m · \u001B[0m')
+    return s
 
 
 # Processes a single string argument.
