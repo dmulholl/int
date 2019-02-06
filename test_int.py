@@ -12,7 +12,9 @@ import int
 
 
 def parse(s):
-    return int.parse_arg(s).strip()
+    out = int.parse_arg(s)
+    out = textwrap.dedent(out).strip().replace('\u001B[90m · \u001B[0m', ' · ')
+    return out
 
 
 def prep(s):
