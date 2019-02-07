@@ -3,7 +3,7 @@
 
 Int is a simple command line utility for converting integers between bases.
 
-![Terminal screenshot.](int.png)
+<img src="int.png">
 
 See the [documentation] for details.
 
