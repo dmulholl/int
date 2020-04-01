@@ -9,4 +9,4 @@ Int is a simple command line utility for converting integers between bases.
 
 See the [documentation] for details.
 
-[documentation]: https://darrenmulholland.com/dev/int.html
+[documentation]: http://www.dmulholl.com/dev/int.html
