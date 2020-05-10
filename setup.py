@@ -3,7 +3,7 @@
 Integer Conversion Utility
 ==========================
 
-Int is a simple command line utility for converting integers between bases. It accepts an integer in its [b]inary, [o]ctal, [d]ecimal, or he[x] form, then prints it out in all four bases::
+Int is a simple command line utility for converting integers between bases. It accepts an integer in its [b]inary, [o]ctal, [d]ecimal, or he[x]adecimal form, then prints it out in all four bases::
 
     $ int 64
     hex: 40
@@ -44,7 +44,7 @@ setup(
         ],
     },
     author = 'Darren Mulholland',
-    url = 'https://github.com/dmulholland/int',
+    url = 'https://github.com/dmulholl/int',
     license = 'Public Domain',
     description = (
         'Integer conversion utility.'
