@@ -237,35 +237,35 @@ def test_big_int():
 
 def test_neg_1():
     assert parse('-1') == prep('''
-        hex: -1
-        dec: -1
-        oct: -1
-        bin: 1111_1111
+        hex: [8b] FF
+        dec: [8b] 255
+        oct: [8b] 377
+        bin: [8b] 1111_1111
     ''')
 
 
 def test_neg_2():
     assert parse('-2') == prep('''
-        hex: -2
-        dec: -2
-        oct: -2
-        bin: 1111_1110
+        hex: [8b] FE
+        dec: [8b] 254
+        oct: [8b] 376
+        bin: [8b] 1111_1110
     ''')
 
 
 def test_neg_128():
     assert parse('-128') == prep('''
-        hex: -80
-        dec: -128
-        oct: -200
-        bin: 1000_0000
+        hex: [8b] 80
+        dec: [8b] 128
+        oct: [8b] 200
+        bin: [8b] 1000_0000
     ''')
 
 
 def test_neg_129():
     assert parse('-129') == prep('''
-        hex: -81
-        dec: -129
-        oct: -201
-        bin: 1111_1111 0111_1111
+        hex: [16b] FF7F
+        dec: [16b] 65,407
+        oct: [16b] 177577
+        bin: [16b] 1111_1111 0111_1111
     ''')

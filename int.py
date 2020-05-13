@@ -9,14 +9,14 @@ import shutil
 import math
 
 
-__version__ = '3.0.0'
+__version__ = '3.1.0'
 
 
 help_text = """
 Usage: %s [FLAGS] INT [INT ...]
 
-  Integer conversion utility. Prints an integer in [b]inary, [o]ctal,
-  [d]ecimal, and he[x]adecimal bases.
+  Integer conversion utility. Accepts input in [b]inary, [o]ctal, [d]ecimal,
+  or he[x]adecimal base, then prints the integer out in all four bases.
 
   Use a single letter prefix to declare the base of the input, e.g. b1010.
   The base defaults to decimal if the prefix is omitted.
@@ -25,7 +25,7 @@ Usage: %s [FLAGS] INT [INT ...]
 
   - Accepts integer literals with a leading zero, e.g. 0x123.
   - Accepts multiple arguments.
-  - Prints negative binary integers in two's complement.
+  - Displays the two's complement for negative integers.
 
 Flags:
   -h, --help        Print this help text.
@@ -34,15 +34,20 @@ Flags:
 """.strip() % os.path.basename(sys.argv[0])
 
 
-# Output template.
-template = """\
+pos_template = """\
  hex: {0:X}
  dec: {0:,d}
  oct: {0:o}
  bin: {1}"""
 
 
-# Map single-letter prefixes to bases and adjectives.
+neg_template = """\
+ hex: [{0}b] {1:X}
+ dec: [{0}b] {1:,d}
+ oct: [{0}b] {1:o}
+ bin: [{0}b] {2}"""
+
+
 bases = {
     'b': (2, 'a binary'),
     'o': (8, 'an octal'),
@@ -58,25 +63,9 @@ def printline():
     print('\u001B[90m' + '─' * cols + '\u001B[0m')
 
 
-# Convert an integer into a string of binary octets.
+# Convert a positive integer into a string of binary octets.
 def binary_string(value):
-    if value == 0:
-        return '0000_0000'
-    elif value < 0:
-        bits = math.log2(-value) + 1
-        if bits > 64:
-            return '<unsupported>'
-        elif bits > 32:
-            bits = 64
-        elif bits > 16:
-            bits = 32
-        elif bits > 8:
-            bits = 16
-        else:
-            bits = 8
-        value = 2**bits + value
-
-    binstring = ''
+    binstring = '' if value else '0000_0000'
     while value:
         for i in range(8):
             binstring = '1' + binstring if value & 1 else '0' + binstring
@@ -103,7 +92,16 @@ def parse_arg(arg):
     except ValueError:
         return f'Error: "{digits}" cannot be parsed as {adj} integer.'
 
-    return template.format(value, binary_string(value))
+    if value >= 0:
+        return pos_template.format(value, binary_string(value))
+    else:
+        num_bits = math.ceil(math.log2(-value) + 1)
+        for size in (8, 16, 32, 64):
+            if num_bits <= size:
+                num_bits = size
+                break
+        tc_value = 2**num_bits + value
+        return neg_template.format(num_bits, tc_value, binary_string(tc_value))
 
 
 def main():
