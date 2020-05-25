@@ -9,7 +9,7 @@ import shutil
 import math
 
 
-__version__ = '3.1.0'
+__version__ = '3.2.0'
 
 
 help_text = """
@@ -96,7 +96,7 @@ def parse_arg(arg):
         return pos_template.format(value, binary_string(value))
     else:
         num_bits = math.ceil(math.log2(-value) + 1)
-        for size in (8, 16, 32, 64):
+        for size in (8, 16, 32, 64, 128):
             if num_bits <= size:
                 num_bits = size
                 break
